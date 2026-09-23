@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Artist {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  image     String
+  bio       String    @db.Text
+  instagram String?
+  sortOrder Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  artworks  Artwork[]
+}
+
+model Artwork {
+  id          String   @id @default(cuid())
+  title       String
+  artistId    String
+  artist      Artist   @relation(fields: [artistId], references: [id], onDelete: Cascade)
+  imageUrl    String
+  technique   String?
+  dimensions  String?
+  year        Int?
+  description String?  @db.Text
+  isPublished Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([artistId])
+  @@index([isPublished, sortOrder])
+}
