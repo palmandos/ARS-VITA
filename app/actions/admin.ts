@@ -41,14 +41,49 @@ export async function logoutAction() {
 
 export async function updateArtistAction(formData: FormData) {
   await requireAdmin();
+
   const id = str(formData.get("id"));
+  const name = str(formData.get("name"));
+  const image = str(formData.get("image"));
+  const shortBio = str(formData.get("shortBio"));
   const bio = str(formData.get("bio"));
   const instagram = normalizeInstagram(str(formData.get("instagram")));
-  if (!id || !bio) throw new Error("La biografía no puede quedar vacía.");
-  await prisma.artist.update({ where: { id }, data: { bio, instagram } });
+  const website = str(formData.get("website")) || null;
+
+  if (!id) {
+    throw new Error("Falta identificar el artista.");
+  }
+
+  if (!name) {
+    throw new Error("El nombre no puede quedar vacío.");
+  }
+
+  if (!image) {
+    throw new Error("La imagen no puede quedar vacía.");
+  }
+
+  if (!bio) {
+    throw new Error("La biografía no puede quedar vacía.");
+  }
+
+  const artist = await prisma.artist.update({
+    where: { id },
+    data: {
+      name,
+      image,
+      shortBio: shortBio || null,
+      bio,
+      instagram,
+      website,
+    },
+  });
+
   revalidatePath("/");
   revalidatePath("/admin");
+  revalidatePath("/obras");
+  revalidatePath(`/artistas/${artist.slug}`);
   revalidatePath("/artistas", "layout");
+
   redirect("/admin?ok=artista");
 }
 
