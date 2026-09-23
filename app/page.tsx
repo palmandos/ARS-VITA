@@ -190,8 +190,7 @@ export default async function Home() {
               <div className="artist-content">
                 <h3>{artist.name}</h3>
 
-                <p>{artist.bio}</p>
-
+                <p>{artist.bio}</p><p>{artist.shortBio || artist.bio}</p>
                 <Link href={`/artistas/${artist.slug}`}>
                   Ver perfil y obras <Arrow />
                 </Link>
