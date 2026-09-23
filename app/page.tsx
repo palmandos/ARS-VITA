@@ -59,24 +59,6 @@ export default async function Home() {
 
       {/* HERO */}
       <section className="hero" id="inicio">
-        {/* Pinceladas decorativas */}
-        <div
-          className="hero-paint hero-paint-left"
-          aria-hidden="true"
-        >
-          <span className="paint-blue" />
-          <span className="paint-gold" />
-          <span className="paint-orange" />
-        </div>
-
-        <div
-          className="hero-paint hero-paint-right"
-          aria-hidden="true"
-        >
-          <span className="paint-blue" />
-          <span className="paint-gold" />
-          <span className="paint-orange" />
-        </div>
 
         <div className="hero-copy">
           <p className="eyebrow">
