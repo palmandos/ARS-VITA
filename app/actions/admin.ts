@@ -44,7 +44,7 @@ export async function updateArtistAction(formData: FormData) {
 
   const id = str(formData.get("id"));
   const name = str(formData.get("name"));
-  const image = str(formData.get("image"));
+  const imageInput = str(formData.get("image"));
   const shortBio = str(formData.get("shortBio"));
   const bio = str(formData.get("bio"));
   const instagram = normalizeInstagram(str(formData.get("instagram")));
@@ -53,6 +53,24 @@ export async function updateArtistAction(formData: FormData) {
   if (!id) {
     throw new Error("Falta identificar el artista.");
   }
+
+  const current = await prisma.artist.findUnique({
+    where: { id },
+  });
+
+  if (!current) {
+    throw new Error("No se encontró el artista.");
+  }
+
+  const file =
+    formData.get("imageFile") instanceof File
+      ? (formData.get("imageFile") as File)
+      : null;
+
+  const image = await uploadImage(
+    file,
+    imageInput || current.image
+  );
 
   if (!name) {
     throw new Error("El nombre no puede quedar vacío.");
@@ -64,6 +82,18 @@ export async function updateArtistAction(formData: FormData) {
 
   if (!bio) {
     throw new Error("La biografía no puede quedar vacía.");
+  }
+
+  if (
+    file &&
+    file.size > 0 &&
+    current.image.includes("blob.vercel-storage.com")
+  ) {
+    try {
+      await del(current.image);
+    } catch {
+      /* no bloquear la edición */
+    }
   }
 
   const artist = await prisma.artist.update({
