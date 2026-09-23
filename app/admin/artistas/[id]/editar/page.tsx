@@ -59,14 +59,22 @@ export default async function EditArtistPage({
         </label>
 
         <label>
-          Foto
-          <input
-            name="image"
-            defaultValue={artist.image}
-            placeholder="/artistas/nombre-artista.jpg"
-            required
-          />
-        </label>
+  Foto actual
+  <input
+    name="image"
+    defaultValue={artist.image}
+    placeholder="/artists/nombre-artista.jpg"
+  />
+</label>
+
+<label>
+  Cambiar foto
+  <input
+    type="file"
+    name="imageFile"
+    accept="image/*"
+  />
+</label>
 
         <label className="full">
           Descripción corta
