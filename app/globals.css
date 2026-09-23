@@ -1,20 +1,29 @@
 :root {
   --ink: #10233d;
   --blue: #0b5fa5;
+  --blue-deep: #123a67;
   --cyan: #08a7c9;
-  --cyan-soft: #e8f7fa;
-  --gold: #e8ad2b;
+  --cyan-soft: #eef8f9;
+  --gold: #d9a62e;
+  --gold-soft: #f3e6bd;
   --orange: #ef6c24;
   --red: #d7352c;
   --paper: #fbfaf7;
+  --paper-soft: #f7f4ed;
   --white: #ffffff;
   --muted: #617083;
-  --line: rgba(16, 35, 61, 0.13);
-  --shadow: 0 24px 60px rgba(16, 35, 61, 0.08);
+  --line: rgba(16, 35, 61, 0.12);
+  --shadow: 0 22px 60px rgba(16, 35, 61, 0.08);
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   color: var(--ink);
@@ -22,236 +31,1750 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.55;
 }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .site-header {
-  min-height: 86px;
-  padding: 18px clamp(24px, 5vw, 78px);
+  min-height: 82px;
+  padding: 12px clamp(24px, 5vw, 78px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
+
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(251,250,247,.92);
-  backdrop-filter: blur(16px);
+
+  background: rgba(251, 250, 247, 0.94);
+  backdrop-filter: blur(18px);
+
   border-bottom: 1px solid var(--line);
 }
-.wordmark { display: flex; flex-direction: column; gap: 1px; min-width: 185px; }
-.wordmark span {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 28px;
-  letter-spacing: .035em;
-  color: var(--blue);
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  width: 165px;
+  flex-shrink: 0;
 }
-.wordmark small { text-transform: uppercase; letter-spacing: .22em; font-size: 8px; color: var(--muted); }
-nav { display: flex; flex-wrap: wrap; gap: clamp(14px, 2.3vw, 34px); font-family: Georgia, 'Times New Roman', serif; font-size: 15px; }
-nav a { position: relative; padding: 8px 0; }
-nav a::after { content: ''; position: absolute; left: 0; bottom: 2px; width: 0; height: 2px; background: var(--gold); transition: width .2s ease; }
-nav a:hover::after { width: 100%; }
+
+.wordmark img {
+  width: 100%;
+  height: 54px;
+  object-fit: contain;
+
+  /*
+    Esto ayuda a integrar el logo actual con el fondo.
+    Cuando tengamos PNG transparente real, todavía va
+    a quedar mejor.
+  */
+  mix-blend-mode: multiply;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(14px, 2.3vw, 34px);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+}
+
+nav a {
+  position: relative;
+  padding: 8px 0;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+
+  width: 0;
+  height: 1px;
+
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
-  min-height: 650px;
-  padding: clamp(60px, 8vw, 120px) clamp(24px, 7vw, 108px);
+  min-height: 680px;
+
+  padding:
+    clamp(80px, 9vw, 135px)
+    clamp(24px, 7vw, 108px);
+
   display: grid;
-  grid-template-columns: minmax(300px, .92fr) minmax(360px, 1.08fr);
-  gap: clamp(50px, 8vw, 120px);
+  grid-template-columns:
+    minmax(320px, 0.92fr)
+    minmax(400px, 1.08fr);
+
+  gap: clamp(60px, 9vw, 145px);
   align-items: center;
+
   overflow: hidden;
+  position: relative;
+
   background:
-    radial-gradient(circle at 90% 20%, rgba(8,167,201,.13), transparent 28%),
-    radial-gradient(circle at 4% 78%, rgba(232,173,43,.10), transparent 25%),
-    linear-gradient(180deg, #fff, #fbfaf7);
+    radial-gradient(
+      circle at 8% 30%,
+      rgba(8, 167, 201, 0.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 22% 75%,
+      rgba(232, 173, 43, 0.08),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      #fffdf9 0%,
+      #fbfaf7 100%
+    );
 }
-.hero-mark { position: relative; display: grid; place-items: center; min-height: 430px; }
-.hero-mark::before, .hero-mark::after {
-  content: '';
+
+/*
+  Pequeñas pinceladas abstractas.
+  No representan ninguna exposición.
+*/
+
+.hero::before {
+  content: "";
   position: absolute;
-  border-radius: 999px;
-  filter: blur(1px);
-  transform: rotate(-14deg);
+
+  width: 380px;
+  height: 28px;
+
+  left: -80px;
+  bottom: 90px;
+
+  background: rgba(8, 167, 201, 0.1);
+
+  transform: rotate(-8deg);
+  border-radius: 100%;
 }
-.hero-mark::before { width: 360px; height: 22px; background: rgba(8,167,201,.16); top: 18%; left: 4%; }
-.hero-mark::after { width: 250px; height: 13px; background: rgba(232,173,43,.23); bottom: 21%; right: -2%; }
-.hero-mark img { width: min(100%, 530px); object-fit: contain; filter: drop-shadow(0 24px 26px rgba(16,35,61,.10)); }
-.eyebrow { margin: 0 0 12px; text-transform: uppercase; letter-spacing: .28em; font-size: 11px; font-weight: 700; color: var(--gold); }
-h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; line-height: 1.05; margin-top: 0; }
-h1 { font-size: clamp(44px, 6vw, 78px); max-width: 790px; margin-bottom: 28px; }
-h2 { font-size: clamp(38px, 4.2vw, 60px); margin-bottom: 24px; }
-h3 { font-size: 25px; margin-bottom: 14px; color: var(--blue); }
-.lead { max-width: 650px; font-size: 20px; color: var(--muted); margin: 0 0 34px; }
-.actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.button { min-height: 48px; padding: 13px 20px; display: inline-flex; align-items: center; justify-content: center; gap: 14px; border: 1px solid var(--gold); font-size: 13px; font-weight: 700; letter-spacing: .045em; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
-.button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(16,35,61,.10); }
-.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
-.secondary { background: transparent; color: var(--ink); }
+
+.hero::after {
+  content: "";
+  position: absolute;
+
+  width: 260px;
+  height: 18px;
+
+  left: 30%;
+  top: 120px;
+
+  background: rgba(217, 166, 46, 0.12);
+
+  transform: rotate(5deg);
+  border-radius: 100%;
+}
+
+.hero-art {
+  position: relative;
+
+  min-height: 410px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1;
+}
+
+.hero-art::before {
+  content: "";
+
+  position: absolute;
+
+  width: 78%;
+  height: 58%;
+
+  left: -5%;
+  top: 12%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(8, 167, 201, 0.12),
+      rgba(8, 167, 201, 0.04) 50%,
+      transparent 72%
+    );
+
+  transform: rotate(-7deg);
+
+  border-radius: 45% 55% 52% 48%;
+}
+
+.hero-art::after {
+  content: "";
+
+  position: absolute;
+
+  width: 46%;
+  height: 22%;
+
+  right: 0;
+  bottom: 13%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(232, 173, 43, 0.17),
+      transparent 72%
+    );
+
+  transform: rotate(8deg);
+}
+
+.hero-logo {
+  position: relative;
+  z-index: 2;
+
+  width: min(100%, 510px);
+
+  object-fit: contain;
+
+  /*
+    Fundamental mientras usamos el archivo actual:
+    integra el blanco del logo con el fondo.
+  */
+  mix-blend-mode: multiply;
+
+  filter:
+    contrast(1.03)
+    saturate(1.03);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+
+  max-width: 760px;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  color: var(--gold);
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+h1 {
+  font-size: clamp(45px, 5.5vw, 76px);
+
+  max-width: 760px;
+
+  margin-bottom: 28px;
+
+  color: var(--blue-deep);
+}
+
+h2 {
+  font-size: clamp(38px, 4.1vw, 59px);
+
+  margin-bottom: 24px;
+
+  color: var(--blue-deep);
+}
+
+h3 {
+  font-size: 25px;
+
+  margin-bottom: 14px;
+
+  color: var(--blue);
+}
+
+.lead {
+  max-width: 620px;
+
+  margin: 0 0 34px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 20px;
+  line-height: 1.65;
+
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: 14px;
+
+  flex-wrap: wrap;
+}
+
+.button {
+  min-height: 48px;
+
+  padding: 13px 21px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  border: 1px solid var(--gold);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.055em;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 22px
+    rgba(16, 35, 61, 0.1);
+}
+
+.primary {
+  background: var(--blue);
+  color: #fff;
+
+  border-color: var(--blue);
+}
+
+.primary:hover {
+  background: var(--blue-deep);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
+/* =========================================================
+   ARS VITA / NOSOTROS
+========================================================= */
 
 .about {
-  padding: clamp(70px, 8vw, 120px) clamp(24px, 8vw, 120px);
+  padding:
+    clamp(85px, 9vw, 135px)
+    clamp(24px, 8vw, 120px);
+
   display: grid;
-  grid-template-columns: .72fr 1.28fr;
-  gap: clamp(48px, 8vw, 130px);
+
+  grid-template-columns:
+    minmax(250px, 0.65fr)
+    minmax(400px, 1.35fr);
+
+  gap: clamp(60px, 9vw, 145px);
+
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: #fff;
-}
-.about h2 { max-width: 420px; }
-.about-text { columns: 2; column-gap: 58px; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; color: #435166; }
-.about-text p { break-inside: avoid; margin: 0 0 22px; }
-.about-signoff { color: var(--blue); font-weight: 700; }
 
-.artists-section { padding: clamp(80px, 9vw, 140px) clamp(24px, 5vw, 78px); }
-.section-head { display: grid; grid-template-columns: 1.1fr .9fr; gap: 50px; align-items: end; margin-bottom: 46px; }
-.section-head > p { color: var(--muted); max-width: 570px; justify-self: end; }
-.artists-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.artist-card { display: grid; grid-template-columns: 190px 1fr; min-height: 300px; border-bottom: 1px solid var(--line); padding: 28px 28px 28px 0; gap: 26px; }
-.artist-card:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 38px; }
-.artist-card:nth-child(even) { padding-left: 38px; }
-.artist-card img { width: 100%; height: 238px; object-fit: cover; filter: saturate(.92); }
-.artist-content { display: flex; flex-direction: column; align-items: flex-start; }
-.artist-content p { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
-.artist-content a { margin-top: auto; color: var(--blue); font-size: 13px; font-weight: 700; display: inline-flex; gap: 10px; align-items: center; }
+  background:
+    linear-gradient(
+      90deg,
+      #fff 0%,
+      #fff 65%,
+      #f9f7f1 100%
+    );
+
+  position: relative;
+}
+
+.about::before {
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 82px;
+
+  left: clamp(24px, 8vw, 120px);
+  top: 80px;
+
+  background: var(--gold);
+}
+
+.about-heading {
+  padding-top: 12px;
+}
+
+.about h2 {
+  max-width: 420px;
+}
+
+.about-text {
+  columns: 2;
+  column-gap: 65px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 17px;
+  line-height: 1.75;
+
+  color: #455267;
+}
+
+.about-text p {
+  break-inside: avoid;
+
+  margin: 0 0 24px;
+}
+
+.about-text strong {
+  color: var(--blue-deep);
+}
+
+.about-signoff {
+  color: var(--blue) !important;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   ARTISTAS
+========================================================= */
+
+.artists-section {
+  padding:
+    clamp(85px, 9vw, 140px)
+    clamp(24px, 6vw, 90px);
+
+  background: var(--paper);
+}
+
+.section-head {
+  display: grid;
+
+  grid-template-columns:
+    1.2fr 0.8fr;
+
+  gap: 60px;
+
+  align-items: end;
+
+  margin-bottom: 56px;
+}
+
+.section-head > p {
+  color: var(--muted);
+
+  max-width: 520px;
+
+  justify-self: end;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 17px;
+}
+
+.artists-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap:
+    clamp(50px, 6vw, 80px)
+    clamp(24px, 3vw, 42px);
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.artist-image {
+  display: block;
+
+  overflow: hidden;
+
+  margin-bottom: 20px;
+}
+
+.artist-card img {
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  filter:
+    saturate(0.92)
+    contrast(0.98);
+
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.artist-card:hover img {
+  transform: scale(1.02);
+
+  filter:
+    saturate(1)
+    contrast(1);
+}
+
+.artist-content {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  flex: 1;
+}
+
+.artist-content h3 {
+  margin:
+    0
+    0
+    11px;
+
+  font-size: 23px;
+}
+
+.artist-content p {
+  margin:
+    0
+    0
+    18px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.artist-content a {
+  margin-top: auto;
+
+  color: var(--blue);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  display: inline-flex;
+
+  gap: 10px;
+
+  align-items: center;
+
+  padding-bottom: 3px;
+
+  border-bottom: 1px solid transparent;
+}
+
+.artist-content a:hover {
+  border-bottom-color: var(--gold);
+}
+
+/* =========================================================
+   OBRAS
+========================================================= */
 
 .works {
-  padding: clamp(80px, 10vw, 150px) clamp(24px, 8vw, 120px);
+  padding:
+    clamp(90px, 10vw, 150px)
+    clamp(24px, 8vw, 120px);
+
   display: grid;
-  grid-template-columns: .9fr 1.1fr;
+
+  grid-template-columns:
+    minmax(280px, 0.8fr)
+    minmax(420px, 1.2fr);
+
   align-items: center;
-  gap: clamp(50px, 8vw, 120px);
-  background: #eaf6f8;
+
+  gap: clamp(60px, 9vw, 135px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf8f9 0%,
+      #f6fbfb 50%,
+      #eef6f4 100%
+    );
 }
-.works-copy { max-width: 600px; }
-.works-copy > p:not(.eyebrow) { color: #536478; font-size: 17px; }
-.muted { font-size: 14px !important; opacity: .8; }
-.work-composition { min-height: 470px; position: relative; }
-.work-panel { position: absolute; border: 10px solid #fff; box-shadow: var(--shadow); }
-.panel-a { width: 46%; height: 74%; left: 6%; top: 6%; background: linear-gradient(145deg, #173d70 0 35%, #e7ae32 35% 47%, #eee8dd 47% 67%, #0aa4c5 67%); }
-.panel-b { width: 42%; height: 60%; right: 5%; top: 20%; background: radial-gradient(circle at 30% 28%, #f5c14b 0 11%, transparent 12%), linear-gradient(125deg, #fbfaf7 0 26%, #ef6c24 26% 45%, #0c5ca4 45% 68%, #11233d 68%); transform: rotate(3deg); }
-.panel-c { width: 32%; height: 48%; left: 38%; bottom: 0; background: linear-gradient(80deg, #0a9fbf, #f4f0e9 33%, #d7352c 33% 47%, #e9ad2c 47% 66%, #163d70 66%); transform: rotate(-2deg); }
 
-.exhibitions { padding: clamp(80px, 9vw, 140px) clamp(24px, 8vw, 120px); background: #fff; }
-.exhibition-row { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
-.exhibition-row p { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; color: var(--muted); }
+.works-copy {
+  max-width: 600px;
+}
 
-.contact { padding: clamp(80px, 8vw, 120px) clamp(24px, 8vw, 120px); display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; align-items: center; border-top: 1px solid var(--line); }
-.contact-card { border-left: 2px solid var(--gold); padding: 8px 0 8px 30px; }
-.contact-card p { color: var(--muted); margin-top: 0; }
-.contact-card small { display: block; margin-top: 14px; color: #7b8796; }
+.works-copy > p:not(.eyebrow) {
+  color: #536478;
 
-footer { padding: 30px clamp(24px, 5vw, 78px); display: flex; justify-content: space-between; gap: 22px; align-items: center; background: var(--blue); color: white; font-size: 12px; }
-.footer-wordmark { font-family: Georgia, 'Times New Roman', serif; font-size: 22px; }
-.footer-wordmark span { margin-left: 18px; text-transform: uppercase; letter-spacing: .22em; font-family: Arial, Helvetica, sans-serif; font-size: 8px; opacity: .82; }
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+.muted {
+  font-size: 14px !important;
+
+  opacity: 0.8;
+}
+
+.work-composition {
+  min-height: 470px;
+
+  position: relative;
+}
+
+.work-panel {
+  position: absolute;
+
+  border: 10px solid #fff;
+
+  box-shadow: var(--shadow);
+}
+
+.panel-a {
+  width: 46%;
+  height: 74%;
+
+  left: 6%;
+  top: 6%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #173d70 0 35%,
+      #e7ae32 35% 47%,
+      #eee8dd 47% 67%,
+      #0aa4c5 67%
+    );
+}
+
+.panel-b {
+  width: 42%;
+  height: 60%;
+
+  right: 5%;
+  top: 20%;
+
+  background:
+    radial-gradient(
+      circle at 30% 28%,
+      #f5c14b 0 11%,
+      transparent 12%
+    ),
+    linear-gradient(
+      125deg,
+      #fbfaf7 0 26%,
+      #ef6c24 26% 45%,
+      #0c5ca4 45% 68%,
+      #11233d 68%
+    );
+
+  transform: rotate(3deg);
+}
+
+.panel-c {
+  width: 32%;
+  height: 48%;
+
+  left: 38%;
+  bottom: 0;
+
+  background:
+    linear-gradient(
+      80deg,
+      #0a9fbf,
+      #f4f0e9 33%,
+      #d7352c 33% 47%,
+      #e9ad2c 47% 66%,
+      #163d70 66%
+    );
+
+  transform: rotate(-2deg);
+}
+
+/* =========================================================
+   EXPOSICIONES
+========================================================= */
+
+.exhibitions {
+  padding:
+    clamp(90px, 9vw, 140px)
+    clamp(24px, 8vw, 120px);
+
+  background: #fff;
+}
+
+.exhibition-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 90px;
+
+  align-items: start;
+}
+
+.exhibition-row h2 {
+  max-width: 650px;
+}
+
+.exhibition-row p {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 19px;
+  line-height: 1.7;
+
+  color: var(--muted);
+}
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+
+.contact {
+  padding:
+    clamp(85px, 8vw, 125px)
+    clamp(24px, 8vw, 120px);
+
+  display: grid;
+
+  grid-template-columns:
+    1.1fr 0.9fr;
+
+  gap: 80px;
+
+  align-items: center;
+
+  border-top: 1px solid var(--line);
+
+  background:
+    linear-gradient(
+      180deg,
+      #fbfaf7 0%,
+      #f7f4ed 100%
+    );
+}
+
+.contact-card {
+  border-left:
+    1px
+    solid
+    var(--gold);
+
+  padding:
+    8px
+    0
+    8px
+    32px;
+}
+
+.contact-card p {
+  color: var(--muted);
+
+  margin-top: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 17px;
+}
+
+.contact-card small {
+  display: block;
+
+  margin-top: 14px;
+
+  color: #7b8796;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  padding:
+    30px
+    clamp(24px, 5vw, 78px);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 22px;
+
+  align-items: center;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0a588e,
+      #0b6f93
+    );
+
+  color: white;
+
+  font-size: 12px;
+}
+
+.footer-wordmark {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 22px;
+}
+
+.footer-wordmark span {
+  margin-left: 18px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.22em;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 8px;
+
+  opacity: 0.82;
+}
+
+/* =========================================================
+   GALERÍA DINÁMICA
+========================================================= */
+
+.home-work-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.home-work {
+  background: #fff;
+
+  padding: 10px;
+
+  box-shadow: var(--shadow);
+}
+
+.home-work img {
+  width: 100%;
+
+  aspect-ratio: 4 / 3;
+
+  object-fit: cover;
+}
+
+.home-work span {
+  display: block;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  padding:
+    12px
+    4px
+    5px;
+
+  font-size: 17px;
+}
+
+.home-work small {
+  display: block;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   PERFIL DE ARTISTA
+========================================================= */
+
+.artist-profile-hero {
+  padding:
+    clamp(70px, 9vw, 130px)
+    clamp(24px, 9vw, 140px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 0.72fr)
+    minmax(360px, 1.28fr);
+
+  gap:
+    clamp(45px, 8vw, 120px);
+
+  align-items: center;
+
+  background: #fff;
+}
+
+.artist-profile-photo img {
+  width: 100%;
+
+  max-width: 480px;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+}
+
+.artist-profile-bio {
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  color: #4f5d70;
+
+  font-size:
+    clamp(18px, 2vw, 23px);
+
+  line-height: 1.65;
+
+  max-width: 820px;
+
+  white-space: pre-line;
+}
+
+.instagram-link {
+  display: inline-flex;
+
+  margin-top: 18px;
+
+  padding-bottom: 3px;
+
+  border-bottom:
+    1px
+    solid
+    var(--gold);
+
+  color: var(--blue);
+
+  font-weight: 700;
+}
+
+.artist-works-section {
+  padding:
+    clamp(70px, 8vw, 120px)
+    clamp(24px, 6vw, 90px);
+}
+
+.public-work-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap:
+    clamp(24px, 4vw, 56px)
+    28px;
+}
+
+.public-work-card img {
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+
+  background: #eee;
+}
+
+.public-work-card h3 {
+  margin:
+    16px
+    0
+    7px;
+
+  font-size: 23px;
+}
+
+.public-work-card p {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 13px;
+}
+
+.public-work-card .work-description {
+  margin-top: 10px;
+
+  line-height: 1.6;
+}
+
+.gallery-page-head {
+  padding:
+    clamp(70px, 9vw, 130px)
+    clamp(24px, 8vw, 120px)
+    20px;
+
+  background: #fff;
+}
+
+.gallery-page-head h1 {
+  margin-bottom: 16px;
+}
+
+.gallery-page-head > p:last-child {
+  color: var(--muted);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 19px;
+}
+
+.gallery-empty {
+  color: var(--muted);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 20px;
+}
+
+/* =========================================================
+   ADMINISTRADOR
+========================================================= */
+
+.admin-shell {
+  min-height: 100vh;
+
+  padding:
+    clamp(28px, 5vw, 72px);
+
+  background: #f5f6f4;
+
+  color: var(--ink);
+}
+
+.login-shell {
+  display: grid;
+
+  place-items: center;
+}
+
+.admin-login-card {
+  width:
+    min(100%, 520px);
+
+  background: #fff;
+
+  padding: 44px;
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  box-shadow:
+    var(--shadow);
+}
+
+.admin-logo {
+  width: 180px;
+
+  margin-bottom: 28px;
+}
+
+.admin-shell h1 {
+  font-size:
+    clamp(38px, 5vw, 62px);
+
+  margin-bottom: 15px;
+}
+
+.admin-shell h2 {
+  font-size:
+    clamp(30px, 3vw, 44px);
+
+  margin-bottom: 0;
+}
+
+.admin-muted,
+.admin-empty {
+  color: var(--muted);
+}
+
+.admin-error {
+  padding:
+    12px
+    14px;
+
+  background: #fff1ef;
+
+  color: #9b3029;
+
+  border-left:
+    3px
+    solid
+    var(--red);
+}
+
+.admin-success {
+  padding:
+    12px
+    16px;
+
+  background: #eef9f2;
+
+  color: #24683b;
+
+  border-left:
+    3px
+    solid
+    #4fa66c;
+
+  margin:
+    0
+    0
+    24px;
+}
+
+.admin-topbar {
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 34px;
+}
+
+.admin-top-actions {
+  display: flex;
+
+  gap: 10px;
+
+  align-items: center;
+}
+
+.admin-panel {
+  background: #fff;
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  padding:
+    clamp(24px, 4vw, 46px);
+
+  margin-bottom: 28px;
+}
+
+.admin-panel-head {
+  display: flex;
+
+  align-items: end;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+.admin-work-list {
+  border-top:
+    1px
+    solid
+    var(--line);
+}
+
+.admin-work-row {
+  display: grid;
+
+  grid-template-columns:
+    88px
+    1fr
+    auto;
+
+  gap: 18px;
+
+  align-items: center;
+
+  padding:
+    16px
+    0;
+
+  border-bottom:
+    1px
+    solid
+    var(--line);
+}
+
+.admin-work-row img {
+  width: 88px;
+
+  height: 88px;
+
+  object-fit: cover;
+}
+
+.admin-work-row strong,
+.admin-work-row span,
+.admin-work-row small {
+  display: block;
+}
+
+.admin-work-row span {
+  color: var(--blue);
+
+  margin-top: 3px;
+}
+
+.admin-work-row small {
+  color: var(--muted);
+
+  margin-top: 5px;
+}
+
+.admin-row-actions {
+  display: flex;
+
+  gap: 16px;
+
+  align-items: center;
+}
+
+.admin-row-actions a,
+.admin-row-actions button {
+  color: var(--blue);
+
+  font: inherit;
+
+  background: none;
+
+  border: 0;
+
+  padding: 0;
+
+  cursor: pointer;
+}
+
+.admin-row-actions button {
+  color: #9b3029;
+}
+
+.admin-artists-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.admin-artist-card {
+  display: grid;
+
+  grid-template-columns:
+    110px
+    1fr;
+
+  gap: 18px;
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  padding: 14px;
+}
+
+.admin-artist-card img {
+  width: 110px;
+
+  height: 140px;
+
+  object-fit: cover;
+}
+
+.admin-artist-card h3 {
+  margin:
+    2px
+    0
+    8px;
+
+  font-size: 21px;
+}
+
+.admin-artist-card p {
+  color: var(--muted);
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.admin-artist-card small {
+  display: block;
+
+  margin:
+    7px
+    0;
+
+  color: #7b8796;
+}
+
+.admin-artist-card a {
+  color: var(--blue);
+
+  font-weight: 700;
+
+  font-size: 13px;
+}
+
+.admin-form {
+  display: grid;
+
+  gap: 18px;
+
+  margin-top: 28px;
+}
+
+.admin-form-grid {
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+}
+
+.admin-form label {
+  display: grid;
+
+  gap: 7px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.03em;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+
+  border:
+    1px
+    solid
+    #ccd3d8;
+
+  background: #fff;
+
+  padding:
+    12px
+    13px;
+
+  font: inherit;
+
+  color: var(--ink);
+
+  border-radius: 0;
+}
+
+.admin-form textarea {
+  resize: vertical;
+
+  line-height: 1.55;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+  outline:
+    2px
+    solid
+    rgba(11, 95, 165, 0.18);
+
+  border-color: var(--blue);
+}
+
+.admin-form .full {
+  grid-column:
+    1 / -1;
+}
+
+.admin-form .check {
+  display: flex;
+
+  grid-template-columns:
+    auto
+    1fr;
+
+  align-items: center;
+
+  justify-content: start;
+
+  font-weight: 400;
+}
+
+.admin-form .check input {
+  width: auto;
+}
+
+.narrow-admin {
+  max-width: 980px;
+
+  margin:
+    0
+    auto;
+}
+
+.admin-back {
+  display: inline-block;
+
+  margin-bottom: 32px;
+
+  color: var(--blue);
+}
+
+.edit-preview {
+  width:
+    min(100%, 360px);
+
+  max-height: 440px;
+
+  object-fit: cover;
+
+  margin:
+    20px
+    0
+    30px;
+}
+
+.artist-edit-heading {
+  display: flex;
+
+  gap: 24px;
+
+  align-items: center;
+}
+
+.artist-edit-heading img {
+  width: 110px;
+
+  height: 140px;
+
+  object-fit: cover;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .artists-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
 
 @media (max-width: 980px) {
-  .site-header { position: relative; align-items: flex-start; flex-direction: column; }
-  nav { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-  .hero, .about, .works, .contact { grid-template-columns: 1fr; }
-  .hero { min-height: auto; }
-  .hero-mark { min-height: 330px; order: 2; }
-  .about-text { columns: 1; }
-  .section-head, .exhibition-row { grid-template-columns: 1fr; }
-  .section-head > p { justify-self: start; }
-  .artists-grid { grid-template-columns: 1fr; }
-  .artist-card:nth-child(odd) { border-right: 0; padding-right: 0; }
-  .artist-card:nth-child(even) { padding-left: 0; }
+  .site-header {
+    position: relative;
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .wordmark {
+    width: 150px;
+  }
+
+  nav {
+    width: 100%;
+
+    overflow-x: auto;
+
+    flex-wrap: nowrap;
+
+    padding-bottom: 4px;
+  }
+
+  .hero,
+  .about,
+  .works,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-art {
+    min-height: 330px;
+
+    order: 2;
+  }
+
+  .about-text {
+    columns: 1;
+  }
+
+  .section-head,
+  .exhibition-row {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head > p {
+    justify-self: start;
+  }
+
+  .public-work-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .artist-profile-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .artist-profile-photo img {
+    max-width: 360px;
+  }
+
+  .admin-artists-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 640px) {
-  .site-header { min-height: auto; padding: 16px 20px; }
-  .hero, .about, .artists-section, .works, .exhibitions, .contact { padding-left: 20px; padding-right: 20px; }
-  .hero { padding-top: 58px; padding-bottom: 68px; gap: 34px; }
-  .hero-mark { min-height: 250px; }
-  .artist-card { grid-template-columns: 118px 1fr; gap: 18px; min-height: 250px; padding: 24px 0; }
-  .artist-card img { height: 165px; }
-  .artist-content p { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
-  .work-composition { min-height: 340px; }
-  footer { align-items: flex-start; flex-direction: column; }
-  .footer-wordmark span { display: block; margin: 5px 0 0; }
-}
+  .site-header {
+    min-height: auto;
 
-/* Galería dinámica */
-.home-work-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-.home-work { background:#fff; padding:10px; box-shadow:var(--shadow); }
-.home-work img { width:100%; aspect-ratio:4/3; object-fit:cover; }
-.home-work span { display:block; font-family:Georgia,'Times New Roman',serif; padding:12px 4px 5px; font-size:17px; }
-.home-work small { display:block; font-family:Arial,Helvetica,sans-serif; margin-top:3px; color:var(--muted); font-size:11px; }
-.artist-profile-hero { padding:clamp(70px,9vw,130px) clamp(24px,9vw,140px); display:grid; grid-template-columns:minmax(260px,.72fr) minmax(360px,1.28fr); gap:clamp(45px,8vw,120px); align-items:center; background:#fff; }
-.artist-profile-photo img { width:100%; max-width:480px; aspect-ratio:4/5; object-fit:cover; }
-.artist-profile-bio { font-family:Georgia,'Times New Roman',serif; color:#4f5d70; font-size:clamp(18px,2vw,23px); line-height:1.65; max-width:820px; white-space:pre-line; }
-.instagram-link { display:inline-flex; margin-top:18px; padding-bottom:3px; border-bottom:1px solid var(--gold); color:var(--blue); font-weight:700; }
-.artist-works-section { padding:clamp(70px,8vw,120px) clamp(24px,6vw,90px); }
-.public-work-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(24px,4vw,56px) 28px; }
-.public-work-card img { width:100%; aspect-ratio:4/5; object-fit:cover; background:#eee; }
-.public-work-card h3 { margin:16px 0 7px; font-size:23px; }
-.public-work-card p { margin:0; color:var(--muted); font-size:13px; }
-.public-work-card .work-description { margin-top:10px; line-height:1.6; }
-.gallery-page-head { padding:clamp(70px,9vw,130px) clamp(24px,8vw,120px) 20px; background:#fff; }
-.gallery-page-head h1 { margin-bottom:16px; }
-.gallery-page-head > p:last-child { color:var(--muted); font-family:Georgia,'Times New Roman',serif; font-size:19px; }
-.gallery-empty { color:var(--muted); font-family:Georgia,'Times New Roman',serif; font-size:20px; }
+    padding:
+      14px
+      20px;
+  }
 
-/* Administrador */
-.admin-shell { min-height:100vh; padding:clamp(28px,5vw,72px); background:#f5f6f4; color:var(--ink); }
-.login-shell { display:grid; place-items:center; }
-.admin-login-card { width:min(100%,520px); background:#fff; padding:44px; border:1px solid var(--line); box-shadow:var(--shadow); }
-.admin-logo { width:180px; margin-bottom:28px; }
-.admin-shell h1 { font-size:clamp(38px,5vw,62px); margin-bottom:15px; }
-.admin-shell h2 { font-size:clamp(30px,3vw,44px); margin-bottom:0; }
-.admin-muted, .admin-empty { color:var(--muted); }
-.admin-error { padding:12px 14px; background:#fff1ef; color:#9b3029; border-left:3px solid var(--red); }
-.admin-success { padding:12px 16px; background:#eef9f2; color:#24683b; border-left:3px solid #4fa66c; margin:0 0 24px; }
-.admin-topbar { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:34px; }
-.admin-top-actions { display:flex; gap:10px; align-items:center; }
-.admin-panel { background:#fff; border:1px solid var(--line); padding:clamp(24px,4vw,46px); margin-bottom:28px; }
-.admin-panel-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:28px; }
-.admin-work-list { border-top:1px solid var(--line); }
-.admin-work-row { display:grid; grid-template-columns:88px 1fr auto; gap:18px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line); }
-.admin-work-row img { width:88px; height:88px; object-fit:cover; }
-.admin-work-row strong, .admin-work-row span, .admin-work-row small { display:block; }
-.admin-work-row span { color:var(--blue); margin-top:3px; }
-.admin-work-row small { color:var(--muted); margin-top:5px; }
-.admin-row-actions { display:flex; gap:16px; align-items:center; }
-.admin-row-actions a, .admin-row-actions button { color:var(--blue); font:inherit; background:none; border:0; padding:0; cursor:pointer; }
-.admin-row-actions button { color:#9b3029; }
-.admin-artists-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
-.admin-artist-card { display:grid; grid-template-columns:110px 1fr; gap:18px; border:1px solid var(--line); padding:14px; }
-.admin-artist-card img { width:110px; height:140px; object-fit:cover; }
-.admin-artist-card h3 { margin:2px 0 8px; font-size:21px; }
-.admin-artist-card p { color:var(--muted); font-size:12px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
-.admin-artist-card small { display:block; margin:7px 0; color:#7b8796; }
-.admin-artist-card a { color:var(--blue); font-weight:700; font-size:13px; }
-.admin-form { display:grid; gap:18px; margin-top:28px; }
-.admin-form-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-.admin-form label { display:grid; gap:7px; font-size:12px; font-weight:700; letter-spacing:.03em; }
-.admin-form input, .admin-form textarea, .admin-form select { width:100%; border:1px solid #ccd3d8; background:#fff; padding:12px 13px; font:inherit; color:var(--ink); border-radius:0; }
-.admin-form textarea { resize:vertical; line-height:1.55; }
-.admin-form input:focus, .admin-form textarea:focus, .admin-form select:focus { outline:2px solid rgba(11,95,165,.18); border-color:var(--blue); }
-.admin-form .full { grid-column:1/-1; }
-.admin-form .check { display:flex; grid-template-columns:auto 1fr; align-items:center; justify-content:start; font-weight:400; }
-.admin-form .check input { width:auto; }
-.narrow-admin { max-width:980px; margin:0 auto; }
-.admin-back { display:inline-block; margin-bottom:32px; color:var(--blue); }
-.edit-preview { width:min(100%,360px); max-height:440px; object-fit:cover; margin:20px 0 30px; }
-.artist-edit-heading { display:flex; gap:24px; align-items:center; }
-.artist-edit-heading img { width:110px; height:140px; object-fit:cover; }
+  .wordmark {
+    width: 130px;
+  }
 
-@media (max-width: 980px) {
-  .public-work-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .artist-profile-hero { grid-template-columns:1fr; }
-  .artist-profile-photo img { max-width:360px; }
-  .admin-artists-grid { grid-template-columns:1fr; }
-}
-@media (max-width: 640px) {
-  .home-work-grid, .public-work-grid { grid-template-columns:1fr; }
-  .admin-shell { padding:20px; }
-  .admin-login-card { padding:28px 22px; }
-  .admin-topbar, .admin-panel-head { align-items:flex-start; flex-direction:column; }
-  .admin-form-grid { grid-template-columns:1fr; }
-  .admin-work-row { grid-template-columns:70px 1fr; }
-  .admin-work-row img { width:70px; height:70px; }
-  .admin-row-actions { grid-column:2; }
-  .admin-artist-card { grid-template-columns:80px 1fr; }
-  .admin-artist-card img { width:80px; height:105px; }
+  nav {
+    font-size: 14px;
+  }
+
+  .hero,
+  .about,
+  .artists-section,
+  .works,
+  .exhibitions,
+  .contact {
+    padding-left: 20px;
+
+    padding-right: 20px;
+  }
+
+  .hero {
+    padding-top: 62px;
+
+    padding-bottom: 75px;
+
+    gap: 42px;
+  }
+
+  .hero-art {
+    min-height: 250px;
+  }
+
+  .hero-logo {
+    width: 92%;
+  }
+
+  h1 {
+    font-size:
+      clamp(40px, 12vw, 56px);
+  }
+
+  h2 {
+    font-size:
+      clamp(36px, 10vw, 48px);
+  }
+
+  .lead {
+    font-size: 18px;
+  }
+
+  .artists-grid {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .artist-card {
+    max-width: 430px;
+  }
+
+  .artist-content p {
+    -webkit-line-clamp: 6;
+  }
+
+  .work-composition {
+    min-height: 340px;
+  }
+
+  .home-work-grid,
+  .public-work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .footer-wordmark span {
+    display: block;
+
+    margin:
+      5px
+      0
+      0;
+  }
+
+  .admin-shell {
+    padding: 20px;
+  }
+
+  .admin-login-card {
+    padding:
+      28px
+      22px;
+  }
+
+  .admin-topbar,
+  .admin-panel-head {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-work-row {
+    grid-template-columns:
+      70px
+      1fr;
+  }
+
+  .admin-work-row img {
+    width: 70px;
+
+    height: 70px;
+  }
+
+  .admin-row-actions {
+    grid-column: 2;
+  }
+
+  .admin-artist-card {
+    grid-template-columns:
+      80px
+      1fr;
+  }
+
+  .admin-artist-card img {
+    width: 80px;
+
+    height: 105px;
+  }
 }
