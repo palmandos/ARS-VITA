@@ -2,14 +2,14 @@
   "name": "ars-vita-galeria",
   "version": "0.2.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build"
-    "start": "next start",
-    "postinstall": "prisma generate",
-    "db:push": "prisma db push",
-    "db:seed": "tsx prisma/seed.ts"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "prisma generate && next build",
+  "start": "next start",
+  "postinstall": "prisma generate",
+  "db:push": "prisma db push",
+  "db:seed": "tsx prisma/seed.ts"
+},
   "dependencies": {
     "@prisma/client": "^6.16.2",
     "@vercel/blob": "^1.0.2",
