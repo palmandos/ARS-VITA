@@ -12,8 +12,10 @@ model Artist {
   name      String
   slug      String    @unique
   image     String
+  shortBio  String?
   bio       String    @db.Text
   instagram String?
+  website   String?
   sortOrder Int       @default(0)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
