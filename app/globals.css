@@ -4,8 +4,7 @@
   --blue-deep: #123a67;
   --cyan: #08a7c9;
   --cyan-soft: #eef8f9;
-  --gold: #d9a62e;
-  --gold-soft: #f3e6bd;
+  --gold: #e8ad2b;
   --orange: #ef6c24;
   --red: #d7352c;
   --paper: #fbfaf7;
@@ -49,16 +48,19 @@ img {
 .site-header {
   min-height: 82px;
   padding: 12px clamp(24px, 5vw, 78px);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 32px;
 
   position: sticky;
   top: 0;
   z-index: 20;
 
-  background: rgba(251, 250, 247, 0.94);
+  background: rgba(255, 255, 255, 0.96);
+
   backdrop-filter: blur(18px);
 
   border-bottom: 1px solid var(--line);
@@ -67,20 +69,18 @@ img {
 .wordmark {
   display: flex;
   align-items: center;
+
   width: 165px;
+
   flex-shrink: 0;
 }
 
 .wordmark img {
   width: 100%;
   height: 54px;
+
   object-fit: contain;
 
-  /*
-    Esto ayuda a integrar el logo actual con el fondo.
-    Cuando tengamos PNG transparente real, todavía va
-    a quedar mejor.
-  */
   mix-blend-mode: multiply;
 }
 
@@ -88,6 +88,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+
   gap: clamp(14px, 2.3vw, 34px);
 
   font-family: Georgia, "Times New Roman", serif;
@@ -96,12 +97,15 @@ nav {
 
 nav a {
   position: relative;
+
   padding: 8px 0;
 }
 
 nav a::after {
   content: "";
+
   position: absolute;
+
   left: 0;
   bottom: 2px;
 
@@ -109,6 +113,7 @@ nav a::after {
   height: 1px;
 
   background: var(--gold);
+
   transition: width 0.2s ease;
 }
 
@@ -121,165 +126,125 @@ nav a:hover::after {
 ========================================================= */
 
 .hero {
-  min-height: 680px;
+  min-height: 650px;
 
   padding:
-    clamp(80px, 9vw, 135px)
+    clamp(75px, 8vw, 120px)
     clamp(24px, 7vw, 108px);
 
   display: grid;
-  grid-template-columns:
-    minmax(320px, 0.92fr)
-    minmax(400px, 1.08fr);
 
-  gap: clamp(60px, 9vw, 145px);
+  grid-template-columns:
+    minmax(320px, 0.9fr)
+    minmax(400px, 1.1fr);
+
+  gap: clamp(55px, 8vw, 120px);
+
   align-items: center;
 
   overflow: hidden;
+
   position: relative;
 
   background:
     radial-gradient(
-      circle at 8% 30%,
-      rgba(8, 167, 201, 0.09),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 22% 75%,
-      rgba(232, 173, 43, 0.08),
+      circle at 12% 25%,
+      rgba(255, 255, 255, 0.18),
       transparent 25%
     ),
     linear-gradient(
-      180deg,
-      #fffdf9 0%,
-      #fbfaf7 100%
+      135deg,
+      #079fbd 0%,
+      #08a9c6 55%,
+      #15afc8 100%
     );
 }
 
-/*
-  Pequeñas pinceladas abstractas.
-  No representan ninguna exposición.
-*/
-
 .hero::before {
   content: "";
+
   position: absolute;
 
-  width: 380px;
-  height: 28px;
+  width: 420px;
+  height: 170px;
 
-  left: -80px;
-  bottom: 90px;
+  left: -110px;
+  bottom: -20px;
 
-  background: rgba(8, 167, 201, 0.1);
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(10, 70, 140, 0.3),
+      rgba(10, 70, 140, 0.1) 50%,
+      transparent 72%
+    );
 
-  transform: rotate(-8deg);
-  border-radius: 100%;
+  transform: rotate(-12deg);
 }
 
 .hero::after {
   content: "";
+
   position: absolute;
 
-  width: 260px;
-  height: 18px;
+  width: 300px;
+  height: 70px;
 
-  left: 30%;
-  top: 120px;
+  right: -30px;
+  top: 80px;
 
-  background: rgba(217, 166, 46, 0.12);
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(239, 174, 45, 0.24),
+      transparent 70%
+    );
 
-  transform: rotate(5deg);
-  border-radius: 100%;
+  transform: rotate(-8deg);
 }
 
 .hero-art {
   position: relative;
 
-  min-height: 410px;
+  min-height: 430px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  z-index: 1;
-}
-
-.hero-art::before {
-  content: "";
-
-  position: absolute;
-
-  width: 78%;
-  height: 58%;
-
-  left: -5%;
-  top: 12%;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(8, 167, 201, 0.12),
-      rgba(8, 167, 201, 0.04) 50%,
-      transparent 72%
-    );
-
-  transform: rotate(-7deg);
-
-  border-radius: 45% 55% 52% 48%;
-}
-
-.hero-art::after {
-  content: "";
-
-  position: absolute;
-
-  width: 46%;
-  height: 22%;
-
-  right: 0;
-  bottom: 13%;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      rgba(232, 173, 43, 0.17),
-      transparent 72%
-    );
-
-  transform: rotate(8deg);
+  z-index: 2;
 }
 
 .hero-logo {
   position: relative;
-  z-index: 2;
 
-  width: min(100%, 510px);
+  width: min(100%, 520px);
+
+  z-index: 2;
 
   object-fit: contain;
 
-  /*
-    Fundamental mientras usamos el archivo actual:
-    integra el blanco del logo con el fondo.
-  */
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 
   filter:
-    contrast(1.03)
-    saturate(1.03);
+    drop-shadow(
+      0 22px 26px rgba(8, 47, 82, 0.13)
+    );
 }
 
 .hero-copy {
   position: relative;
+
   z-index: 2;
 
-  max-width: 760px;
+  max-width: 730px;
 }
 
 .eyebrow {
   margin: 0 0 16px;
 
   text-transform: uppercase;
+
   letter-spacing: 0.26em;
 
   font-size: 10px;
@@ -296,6 +261,7 @@ h3 {
   font-family: Georgia, "Times New Roman", serif;
 
   font-weight: 400;
+
   line-height: 1.08;
 }
 
@@ -325,6 +291,17 @@ h3 {
   color: var(--blue);
 }
 
+.hero .eyebrow {
+  color: #f4c04c;
+}
+
+.hero h1 {
+  color: #ffffff;
+
+  text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.03);
+}
+
 .lead {
   max-width: 620px;
 
@@ -333,13 +310,19 @@ h3 {
   font-family: Georgia, "Times New Roman", serif;
 
   font-size: 20px;
+
   line-height: 1.65;
 
   color: var(--muted);
 }
 
+.hero .lead {
+  color: rgba(255, 255, 255, 0.92);
+}
+
 .actions {
   display: flex;
+
   gap: 14px;
 
   flex-wrap: wrap;
@@ -351,6 +334,7 @@ h3 {
   padding: 13px 21px;
 
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
@@ -374,28 +358,47 @@ h3 {
   transform: translateY(-2px);
 
   box-shadow:
-    0 10px 22px
-    rgba(16, 35, 61, 0.1);
+    0 10px 22px rgba(16, 35, 61, 0.1);
 }
 
 .primary {
   background: var(--blue);
-  color: #fff;
+
+  color: #ffffff;
 
   border-color: var(--blue);
 }
 
-.primary:hover {
-  background: var(--blue-deep);
-}
-
 .secondary {
   background: transparent;
+
   color: var(--ink);
 }
 
+.hero .primary {
+  background: #ffffff;
+
+  color: var(--blue-deep);
+
+  border-color: #ffffff;
+}
+
+.hero .primary:hover {
+  background: #f7f4ed;
+}
+
+.hero .secondary {
+  color: #ffffff;
+
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero .secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 /* =========================================================
-   ARS VITA / NOSOTROS
+   ARS VITA
 ========================================================= */
 
 .about {
@@ -417,9 +420,9 @@ h3 {
   background:
     linear-gradient(
       90deg,
-      #fff 0%,
-      #fff 65%,
-      #f9f7f1 100%
+      #ffffff 0%,
+      #ffffff 65%,
+      #faf8f2 100%
     );
 
   position: relative;
@@ -431,10 +434,10 @@ h3 {
   position: absolute;
 
   width: 2px;
-  height: 82px;
+  height: 75px;
 
   left: clamp(24px, 8vw, 120px);
-  top: 80px;
+  top: 82px;
 
   background: var(--gold);
 }
@@ -449,11 +452,13 @@ h3 {
 
 .about-text {
   columns: 2;
+
   column-gap: 65px;
 
   font-family: Georgia, "Times New Roman", serif;
 
   font-size: 17px;
+
   line-height: 1.75;
 
   color: #455267;
@@ -484,7 +489,9 @@ h3 {
     clamp(85px, 9vw, 140px)
     clamp(24px, 6vw, 90px);
 
-  background: var(--paper);
+  background: #ffffff;
+
+  border-top: 1px solid rgba(16, 35, 61, 0.08);
 }
 
 .section-head {
@@ -525,6 +532,7 @@ h3 {
 
 .artist-card {
   display: flex;
+
   flex-direction: column;
 
   min-width: 0;
@@ -564,6 +572,7 @@ h3 {
 
 .artist-content {
   display: flex;
+
   flex-direction: column;
 
   align-items: flex-start;
@@ -572,27 +581,24 @@ h3 {
 }
 
 .artist-content h3 {
-  margin:
-    0
-    0
-    11px;
+  margin: 0 0 11px;
 
   font-size: 23px;
 }
 
 .artist-content p {
-  margin:
-    0
-    0
-    18px;
+  margin: 0 0 18px;
 
   color: var(--muted);
 
   font-size: 13px;
+
   line-height: 1.65;
 
   display: -webkit-box;
+
   -webkit-line-clamp: 5;
+
   -webkit-box-orient: vertical;
 
   overflow: hidden;
@@ -678,7 +684,7 @@ h3 {
 .work-panel {
   position: absolute;
 
-  border: 10px solid #fff;
+  border: 10px solid #ffffff;
 
   box-shadow: var(--shadow);
 }
@@ -753,14 +759,13 @@ h3 {
     clamp(90px, 9vw, 140px)
     clamp(24px, 8vw, 120px);
 
-  background: #fff;
+  background: #ffffff;
 }
 
 .exhibition-row {
   display: grid;
 
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 
   gap: 90px;
 
@@ -775,6 +780,7 @@ h3 {
   font-family: Georgia, "Times New Roman", serif;
 
   font-size: 19px;
+
   line-height: 1.7;
 
   color: var(--muted);
@@ -809,16 +815,9 @@ h3 {
 }
 
 .contact-card {
-  border-left:
-    1px
-    solid
-    var(--gold);
+  border-left: 1px solid var(--gold);
 
-  padding:
-    8px
-    0
-    8px
-    32px;
+  padding: 8px 0 8px 32px;
 }
 
 .contact-card p {
@@ -860,19 +859,16 @@ footer {
     linear-gradient(
       90deg,
       #0a588e,
-      #0b6f93
+      #0b7897
     );
 
-  color: white;
+  color: #ffffff;
 
   font-size: 12px;
 }
 
 .footer-wordmark {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  font-family: Georgia, "Times New Roman", serif;
 
   font-size: 22px;
 }
@@ -884,10 +880,7 @@ footer {
 
   letter-spacing: 0.22em;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 
   font-size: 8px;
 
@@ -901,14 +894,13 @@ footer {
 .home-work-grid {
   display: grid;
 
-  grid-template-columns:
-    repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 18px;
 }
 
 .home-work {
-  background: #fff;
+  background: #ffffff;
 
   padding: 10px;
 
@@ -926,15 +918,9 @@ footer {
 .home-work span {
   display: block;
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  font-family: Georgia, "Times New Roman", serif;
 
-  padding:
-    12px
-    4px
-    5px;
+  padding: 12px 4px 5px;
 
   font-size: 17px;
 }
@@ -942,10 +928,7 @@ footer {
 .home-work small {
   display: block;
 
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 
   margin-top: 3px;
 
@@ -955,7 +938,7 @@ footer {
 }
 
 /* =========================================================
-   PERFIL DE ARTISTA
+   PERFIL ARTISTA
 ========================================================= */
 
 .artist-profile-hero {
@@ -969,12 +952,11 @@ footer {
     minmax(260px, 0.72fr)
     minmax(360px, 1.28fr);
 
-  gap:
-    clamp(45px, 8vw, 120px);
+  gap: clamp(45px, 8vw, 120px);
 
   align-items: center;
 
-  background: #fff;
+  background: #ffffff;
 }
 
 .artist-profile-photo img {
@@ -988,15 +970,11 @@ footer {
 }
 
 .artist-profile-bio {
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  font-family: Georgia, "Times New Roman", serif;
 
   color: #4f5d70;
 
-  font-size:
-    clamp(18px, 2vw, 23px);
+  font-size: clamp(18px, 2vw, 23px);
 
   line-height: 1.65;
 
@@ -1012,10 +990,7 @@ footer {
 
   padding-bottom: 3px;
 
-  border-bottom:
-    1px
-    solid
-    var(--gold);
+  border-bottom: 1px solid var(--gold);
 
   color: var(--blue);
 
@@ -1046,14 +1021,11 @@ footer {
 
   object-fit: cover;
 
-  background: #eee;
+  background: #eeeeee;
 }
 
 .public-work-card h3 {
-  margin:
-    16px
-    0
-    7px;
+  margin: 16px 0 7px;
 
   font-size: 23px;
 }
@@ -1078,7 +1050,7 @@ footer {
     clamp(24px, 8vw, 120px)
     20px;
 
-  background: #fff;
+  background: #ffffff;
 }
 
 .gallery-page-head h1 {
@@ -1088,10 +1060,7 @@ footer {
 .gallery-page-head > p:last-child {
   color: var(--muted);
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  font-family: Georgia, "Times New Roman", serif;
 
   font-size: 19px;
 }
@@ -1099,23 +1068,19 @@ footer {
 .gallery-empty {
   color: var(--muted);
 
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
+  font-family: Georgia, "Times New Roman", serif;
 
   font-size: 20px;
 }
 
 /* =========================================================
-   ADMINISTRADOR
+   ADMIN
 ========================================================= */
 
 .admin-shell {
   min-height: 100vh;
 
-  padding:
-    clamp(28px, 5vw, 72px);
+  padding: clamp(28px, 5vw, 72px);
 
   background: #f5f6f4;
 
@@ -1129,20 +1094,15 @@ footer {
 }
 
 .admin-login-card {
-  width:
-    min(100%, 520px);
+  width: min(100%, 520px);
 
-  background: #fff;
+  background: #ffffff;
 
   padding: 44px;
 
-  border:
-    1px
-    solid
-    var(--line);
+  border: 1px solid var(--line);
 
-  box-shadow:
-    var(--shadow);
+  box-shadow: var(--shadow);
 }
 
 .admin-logo {
@@ -1152,15 +1112,13 @@ footer {
 }
 
 .admin-shell h1 {
-  font-size:
-    clamp(38px, 5vw, 62px);
+  font-size: clamp(38px, 5vw, 62px);
 
   margin-bottom: 15px;
 }
 
 .admin-shell h2 {
-  font-size:
-    clamp(30px, 3vw, 44px);
+  font-size: clamp(30px, 3vw, 44px);
 
   margin-bottom: 0;
 }
@@ -1171,38 +1129,25 @@ footer {
 }
 
 .admin-error {
-  padding:
-    12px
-    14px;
+  padding: 12px 14px;
 
   background: #fff1ef;
 
   color: #9b3029;
 
-  border-left:
-    3px
-    solid
-    var(--red);
+  border-left: 3px solid var(--red);
 }
 
 .admin-success {
-  padding:
-    12px
-    16px;
+  padding: 12px 16px;
 
   background: #eef9f2;
 
   color: #24683b;
 
-  border-left:
-    3px
-    solid
-    #4fa66c;
+  border-left: 3px solid #4fa66c;
 
-  margin:
-    0
-    0
-    24px;
+  margin: 0 0 24px;
 }
 
 .admin-topbar {
@@ -1226,15 +1171,11 @@ footer {
 }
 
 .admin-panel {
-  background: #fff;
+  background: #ffffff;
 
-  border:
-    1px
-    solid
-    var(--line);
+  border: 1px solid var(--line);
 
-  padding:
-    clamp(24px, 4vw, 46px);
+  padding: clamp(24px, 4vw, 46px);
 
   margin-bottom: 28px;
 }
@@ -1252,10 +1193,7 @@ footer {
 }
 
 .admin-work-list {
-  border-top:
-    1px
-    solid
-    var(--line);
+  border-top: 1px solid var(--line);
 }
 
 .admin-work-row {
@@ -1270,14 +1208,9 @@ footer {
 
   align-items: center;
 
-  padding:
-    16px
-    0;
+  padding: 16px 0;
 
-  border-bottom:
-    1px
-    solid
-    var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .admin-work-row img {
@@ -1351,10 +1284,7 @@ footer {
 
   gap: 18px;
 
-  border:
-    1px
-    solid
-    var(--line);
+  border: 1px solid var(--line);
 
   padding: 14px;
 }
@@ -1368,10 +1298,7 @@ footer {
 }
 
 .admin-artist-card h3 {
-  margin:
-    2px
-    0
-    8px;
+  margin: 2px 0 8px;
 
   font-size: 21px;
 }
@@ -1386,6 +1313,7 @@ footer {
   display: -webkit-box;
 
   -webkit-line-clamp: 4;
+
   -webkit-box-orient: vertical;
 
   overflow: hidden;
@@ -1394,9 +1322,7 @@ footer {
 .admin-artist-card small {
   display: block;
 
-  margin:
-    7px
-    0;
+  margin: 7px 0;
 
   color: #7b8796;
 }
@@ -1439,16 +1365,11 @@ footer {
 .admin-form select {
   width: 100%;
 
-  border:
-    1px
-    solid
-    #ccd3d8;
+  border: 1px solid #ccd3d8;
 
-  background: #fff;
+  background: #ffffff;
 
-  padding:
-    12px
-    13px;
+  padding: 12px 13px;
 
   font: inherit;
 
@@ -1466,17 +1387,13 @@ footer {
 .admin-form input:focus,
 .admin-form textarea:focus,
 .admin-form select:focus {
-  outline:
-    2px
-    solid
-    rgba(11, 95, 165, 0.18);
+  outline: 2px solid rgba(11, 95, 165, 0.18);
 
   border-color: var(--blue);
 }
 
 .admin-form .full {
-  grid-column:
-    1 / -1;
+  grid-column: 1 / -1;
 }
 
 .admin-form .check {
@@ -1500,9 +1417,7 @@ footer {
 .narrow-admin {
   max-width: 980px;
 
-  margin:
-    0
-    auto;
+  margin: 0 auto;
 }
 
 .admin-back {
@@ -1514,17 +1429,13 @@ footer {
 }
 
 .edit-preview {
-  width:
-    min(100%, 360px);
+  width: min(100%, 360px);
 
   max-height: 440px;
 
   object-fit: cover;
 
-  margin:
-    20px
-    0
-    30px;
+  margin: 20px 0 30px;
 }
 
 .artist-edit-heading {
@@ -1637,9 +1548,7 @@ footer {
   .site-header {
     min-height: auto;
 
-    padding:
-      14px
-      20px;
+    padding: 14px 20px;
   }
 
   .wordmark {
@@ -1678,13 +1587,11 @@ footer {
   }
 
   h1 {
-    font-size:
-      clamp(40px, 12vw, 56px);
+    font-size: clamp(40px, 12vw, 56px);
   }
 
   h2 {
-    font-size:
-      clamp(36px, 10vw, 48px);
+    font-size: clamp(36px, 10vw, 48px);
   }
 
   .lead {
@@ -1723,10 +1630,7 @@ footer {
   .footer-wordmark span {
     display: block;
 
-    margin:
-      5px
-      0
-      0;
+    margin: 5px 0 0;
   }
 
   .admin-shell {
@@ -1734,9 +1638,7 @@ footer {
   }
 
   .admin-login-card {
-    padding:
-      28px
-      22px;
+    padding: 28px 22px;
   }
 
   .admin-topbar,
