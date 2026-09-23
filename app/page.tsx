@@ -43,10 +43,8 @@ export default async function Home() {
           href="/#inicio"
           aria-label="ARS VITA, inicio"
         >
-          <img
-            src="/brand/ars-vita-logo.png"
-            alt="ARS VITA — Creadores contemporáneos"
-          />
+          <span>ARS VITA</span>
+          <small>Creadores contemporáneos</small>
         </Link>
 
         <nav aria-label="Navegación principal">
@@ -61,12 +59,23 @@ export default async function Home() {
 
       {/* HERO */}
       <section className="hero" id="inicio">
-        <div className="hero-art">
-          <img
-            src="/brand/ars-vita-logo.png"
-            alt="ARS VITA — Creadores contemporáneos"
-            className="hero-logo"
-          />
+        {/* Pinceladas decorativas */}
+        <div
+          className="hero-paint hero-paint-left"
+          aria-hidden="true"
+        >
+          <span className="paint-blue" />
+          <span className="paint-gold" />
+          <span className="paint-orange" />
+        </div>
+
+        <div
+          className="hero-paint hero-paint-right"
+          aria-hidden="true"
+        >
+          <span className="paint-blue" />
+          <span className="paint-gold" />
+          <span className="paint-orange" />
         </div>
 
         <div className="hero-copy">
@@ -84,19 +93,36 @@ export default async function Home() {
           </p>
 
           <div className="actions">
-            <a className="button primary" href="#artistas">
+            <a
+              className="button primary"
+              href="#artistas"
+            >
               Explorar artistas <Arrow />
             </a>
 
-            <a className="button secondary" href="#ars-vita">
+            <a
+              className="button secondary"
+              href="#ars-vita"
+            >
               Conocer Ars Vita
             </a>
           </div>
         </div>
+
+        <div className="hero-art">
+          <img
+            src="/brand/ars-vita-logo.png"
+            alt="ARS VITA — Creadores contemporáneos"
+            className="hero-logo"
+          />
+        </div>
       </section>
 
       {/* ARS VITA */}
-      <section className="about" id="ars-vita">
+      <section
+        className="about"
+        id="ars-vita"
+      >
         <div className="about-heading">
           <p className="eyebrow">Ars Vita</p>
 
@@ -142,11 +168,19 @@ export default async function Home() {
       </section>
 
       {/* ARTISTAS */}
-      <section className="artists-section" id="artistas">
+      <section
+        className="artists-section"
+        id="artistas"
+      >
         <div className="section-head">
           <div>
-            <p className="eyebrow">Nuestros artistas</p>
-            <h2>Ocho miradas, infinitas posibilidades.</h2>
+            <p className="eyebrow">
+              Nuestros artistas
+            </p>
+
+            <h2>
+              Ocho miradas, infinitas posibilidades.
+            </h2>
           </div>
 
           <p>
@@ -157,8 +191,14 @@ export default async function Home() {
 
         <div className="artists-grid">
           {artists.map((artist) => (
-            <article className="artist-card" key={artist.id}>
-              <Link href={`/artistas/${artist.slug}`} className="artist-image">
+            <article
+              className="artist-card"
+              key={artist.id}
+            >
+              <Link
+                href={`/artistas/${artist.slug}`}
+                className="artist-image"
+              >
                 <img
                   src={artist.image}
                   alt={`Retrato de ${artist.name}`}
@@ -180,9 +220,14 @@ export default async function Home() {
       </section>
 
       {/* OBRAS */}
-      <section className="works" id="obras">
+      <section
+        className="works"
+        id="obras"
+      >
         <div className="works-copy">
-          <p className="eyebrow">Obras</p>
+          <p className="eyebrow">
+            Obras
+          </p>
 
           <h2>
             {artworks.length
@@ -196,7 +241,10 @@ export default async function Home() {
               : "Desde el administrador se pueden cargar las primeras obras y publicarlas cuando estén listas."}
           </p>
 
-          <Link className="button secondary" href="/obras">
+          <Link
+            className="button secondary"
+            href="/obras"
+          >
             Ver todas las obras <Arrow />
           </Link>
         </div>
@@ -238,7 +286,9 @@ export default async function Home() {
         className="exhibitions"
         id="exposiciones"
       >
-        <p className="eyebrow">Exposiciones</p>
+        <p className="eyebrow">
+          Exposiciones
+        </p>
 
         <div className="exhibition-row">
           <h2>
@@ -259,7 +309,9 @@ export default async function Home() {
         id="contacto"
       >
         <div>
-          <p className="eyebrow">Contacto</p>
+          <p className="eyebrow">
+            Contacto
+          </p>
 
           <h2>
             Arte que transforma.
@@ -291,7 +343,9 @@ export default async function Home() {
       <footer>
         <div className="footer-wordmark">
           ARS VITA
-          <span>Creadores contemporáneos</span>
+          <span>
+            Creadores contemporáneos
+          </span>
         </div>
 
         <p>Montevideo, Uruguay</p>
